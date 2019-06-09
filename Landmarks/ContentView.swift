@@ -8,9 +8,34 @@
 
 import SwiftUI
 
+//combine compornents
 struct ContentView : View {
     var body: some View {
-        Text("Hello World")
+        VStack {
+            MapView()
+                .frame(height: 300)
+                .edgesIgnoringSafeArea(.top)
+
+            CircleImage()
+                .offset(y: -130)
+                .padding(.bottom, -130)
+            
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
+                    Text("Turtle Rock")
+                        .font(.title)
+                    HStack {
+                        Text("Joshua Tree National Park.")
+                            .font(.subheadline)
+                        Spacer()
+                        Text("California")
+                            .font(.subheadline)
+                    }
+                }
+            }
+            .padding()
+            Spacer()
+        }
     }
 }
 
