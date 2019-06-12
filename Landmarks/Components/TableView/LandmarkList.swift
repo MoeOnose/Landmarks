@@ -20,7 +20,7 @@ struct LandmarkList: View {
         NavigationView {
             List(landmarkData.identified(by: \.id)) {
                 landmark in
-                NavigationButton(destination: LandmarkDetail()) {
+                NavigationButton(destination: LandmarkDetail(landmark: landmark)) {
                     LandmarkRow(landmark: landmark)
                 }
             }

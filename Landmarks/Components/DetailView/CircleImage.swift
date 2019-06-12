@@ -9,8 +9,11 @@
 import SwiftUI
 
 struct CircleImage : View {
+    var image: Image
     var body: some View {
-        Image("turtlerock")
+        //特定のImageのインスタンスではなくプロパティで抽象化
+        
+        image
         .clipShape(Circle())
             //円形に合わせてグレーのラインをひく
             .overlay(Circle().stroke(Color.white, lineWidth: 4))
@@ -21,7 +24,8 @@ struct CircleImage : View {
 #if DEBUG
 struct CircleImage_Previews : PreviewProvider {
     static var previews: some View {
-        CircleImage()
+        //具体的なデータはここ
+        CircleImage(image: Image("turtlerock"))
     }
 }
 #endif
