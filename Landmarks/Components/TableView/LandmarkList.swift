@@ -9,8 +9,9 @@
 import SwiftUI
 
 struct LandmarkList: View {
-    //redux感
-    @State var showFavoriteOnly = false
+//    @State var showFavoriteOnly = false
+    //書き換え可能にする
+    @EnvironmentObject var userData: UserData
     
     var body: some View {
         //tableVeiwはListに
@@ -22,11 +23,11 @@ struct LandmarkList: View {
         NavigationView {
             //Listで繰り返し処理をするとデータの数だけcellを返してしまうためForEachを使ってる
             List {
-                Toggle(isOn: $showFavoriteOnly) {
+                Toggle(isOn: $userData.showFaviritesOnly) {
                     Text("Favorites only")
                 }
-                ForEach(landmarkData) { landmark in
-                    if !self.showFavoriteOnly || landmark.isFavorite { NavigationButton(destination: LandmarkDetail(landmark: landmark)) {
+                ForEach(userData.landmarks) { landmark in
+                                        if !self.userData.showFaviritesOnly || landmark.isFavorite { NavigationButton(destination: LandmarkDetail(landmark: landmark)) {
                             LandmarkRow(landmark: landmark)
                         }
                     }
@@ -44,6 +45,7 @@ struct LandmarkList_Previews: PreviewProvider {
         //キャンバスで確認したいデバイスを複数登録できる にしても文字列なのね
         ForEach(["iPhone SE", "iPhone X"].identified(by: \.self)) { deviceName in
             LandmarkList()
+                .environmentObject(UserData())
                 .previewDevice(PreviewDevice(rawValue: deviceName ))
             .previewDisplayName(deviceName)
         }
