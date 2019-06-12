@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct LandmarkList: View {
+    //redux感
+    @State var showFavoriteOnly = false
+    
     var body: some View {
         //tableVeiwはListに
 //        List {
@@ -16,16 +19,22 @@ struct LandmarkList: View {
 //            LandmarkRow(landmark: landmarkData[1])
 //        }
         //これが
-        
         NavigationView {
-            List(landmarkData) { landmark in
-                NavigationButton(destination: LandmarkDetail(landmark: landmark)) {
-                    LandmarkRow(landmark: landmark)
+            //Listで繰り返し処理をするとデータの数だけcellを返してしまうためForEachを使ってる
+            List {
+                Toggle(isOn: $showFavoriteOnly) {
+                    Text("Favorites only")
                 }
+                ForEach(landmarkData) { landmark in
+                    if !self.showFavoriteOnly || landmark.isFavorite { NavigationButton(destination: LandmarkDetail(landmark: landmark)) {
+                            LandmarkRow(landmark: landmark)
+                        }
+                    }
+                }
+                    //titleをつけるのはList
+                .navigationBarTitle(Text("Landmarks"))
+            //こう
             }
-                //titleをつけるのはList
-            .navigationBarTitle(Text("Landmarks"))
-        //こう
         }
     }
 }
