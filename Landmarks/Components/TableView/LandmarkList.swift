@@ -32,7 +32,12 @@ struct LandmarkList: View {
 
 struct LandmarkList_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkList()
-        .previewDevice(PreviewDevice(rawValue: "iPhone XR"))
+        //キャンバスで確認したいデバイスを複数登録できる にしても文字列なのね
+        ForEach(["iPhone SE", "iPhone X"].identified(by: \.self)) { deviceName in
+            LandmarkList()
+                .previewDevice(PreviewDevice(rawValue: deviceName ))
+            .previewDisplayName(deviceName)
+        }
+
     }
 }
