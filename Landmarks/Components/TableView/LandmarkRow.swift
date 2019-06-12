@@ -21,7 +21,7 @@ struct LandmarkRow : View {
 #if DEBUG
 struct LandmarkRow_Previews : PreviewProvider {
     static var previews: some View {
-        Group  {
+        Group {
             LandmarkRow(landmark: landmarkData[0])
             LandmarkRow(landmark: landmarkData[1])
         }

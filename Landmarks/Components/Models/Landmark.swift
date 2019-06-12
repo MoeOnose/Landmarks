@@ -8,8 +8,9 @@
 
 import SwiftUI
 import CoreLocation
-
-struct Landmark: Hashable, Codable {
+//Identifiable: 識別可能にする。今までtableViewのindexと照合してたけどそれが無くなったから必要になったのでは？
+//実装: protocolの批准とidプロパティの追加
+struct Landmark: Hashable, Codable, Identifiable {
     var id: Int
     var name: String
     //privateは定義したクラス内のみ
