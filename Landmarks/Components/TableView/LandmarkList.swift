@@ -18,20 +18,21 @@ struct LandmarkList: View {
         //これが
         
         NavigationView {
-            List(landmarkData.identified(by: \.id)) {
-                landmark in
+            List(landmarkData) { landmark in
                 NavigationButton(destination: LandmarkDetail(landmark: landmark)) {
                     LandmarkRow(landmark: landmark)
                 }
             }
+                //titleをつけるのはList
+            .navigationBarTitle(Text("Landmarks"))
         //こう
         }
-        .navigationBarTitle(Text("Landmarks"))
     }
 }
 
 struct LandmarkList_Previews: PreviewProvider {
     static var previews: some View {
         LandmarkList()
+        .previewDevice(PreviewDevice(rawValue: "iPhone XR"))
     }
 }

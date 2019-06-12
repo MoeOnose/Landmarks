@@ -10,11 +10,11 @@ import SwiftUI
 
 //combine compornents
 struct LandmarkDetail : View {
-    let landmark: Landmark
+    var landmark: Landmark
     
     var body: some View {
         VStack {
-            MapView(coordinate: landmark.coordinate)
+            MapView(coordinate: landmark.locationCoordinate)
                 .frame(height: 300)
                 .edgesIgnoringSafeArea(.top)
 
@@ -22,8 +22,7 @@ struct LandmarkDetail : View {
                 .offset(y: -130)
                 .padding(.bottom, -130)
             
-            HStack(alignment: .top) {
-                VStack(alignment: .leading) {
+            VStack(alignment: .leading) {
                     Text(landmark.name)
                         .font(.title)
                     HStack(alignment: .top) {
@@ -34,11 +33,11 @@ struct LandmarkDetail : View {
                             .font(.subheadline)
                     }
                 }
-            }
             .padding()
+            
             Spacer()
         }
-        .navigationBarTitle(name: landmark.name, displayMode: .inline)
+//        .navigationBarTitle(name: landmark.name, displayMode: .inline)
     }
 }
 
