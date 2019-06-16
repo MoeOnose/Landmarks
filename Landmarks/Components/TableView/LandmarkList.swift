@@ -27,6 +27,7 @@ struct LandmarkList: View {
                     Text("Favorites only")
                 }
                 ForEach(userData.landmarks) { landmark in
+                    //🤔なんでこの条件で表示切り替えできるのかわからん
                                         if !self.userData.showFaviritesOnly || landmark.isFavorite { NavigationButton(destination: LandmarkDetail(landmark: landmark)) {
                             LandmarkRow(landmark: landmark)
                         }

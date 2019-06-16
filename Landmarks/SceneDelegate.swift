@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Use a UIHostingController as window root view controller
         let window = UIWindow(frame: UIScreen.main.bounds)
+        //初回に起動するviewと使用するデータを指定
         window.rootViewController = UIHostingController(
             rootView: LandmarkList()
             .environmentObject(UserData())
